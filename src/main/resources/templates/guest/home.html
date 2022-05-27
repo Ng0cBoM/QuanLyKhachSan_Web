@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <style>
+        .room {transition: all .5s}
+        .room:hover {
+            -webkit-box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);
+            box-shadow: 0 2px 12px 0 rgb(0 0 0 / 30%);
+            -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <nav th:replace="~{/guest/navbar::nav}"></nav>
+</div>
+<div class="banner container mt-3">
+    <img th:src="@{/images/banner/3.jpg}" />
+</div>
+
+<div>
+
+    <div>
+        <div class="d-flex flex-column">
+            <div class="container d-flex justify-content-between my-4">
+                <h3>Phòng</h3>
+                <div>
+                    <form th:object="${room}">
+                        <select class="form-select" th:field="*{hotelId}">
+                            <option
+                                th:each="hotel: ${hotels}"
+                                th:value="${hotel.id}"
+                                th:text="${hotel.address}"
+                            />
+                        </select>
+
+                        <select class="form-select" th:field="*{typeRoomId}">
+                            <option
+                                    th:each="typeRoom: ${typeRooms}"
+                                    th:value="${typeRoom.id}"
+                                    th:text="${typeRoom.name}"
+                            />
+                        </select>
+
+                        <select class="form-select" th:field="*{people}">
+                            <option
+                                    th:each="numberPeople: ${numberPeoples}"
+                                    th:value="${numberPeople.code}"
+                                    th:text="${numberPeople.value}"
+                            />
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="container d-flex flex-wrap p-0">
+                <div class="col-md-3 col-sm-6 col-xs-12 mb-4 room" th:each="room: ${rooms}">
+                    <div>
+                        <img class="w-100" style="height: 100px" th:src="@{${room.image}}" />
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-0 font-weight-bold" th:text="${room.addressHotel}"></p>
+                        <p class="mb-0" th:text="${room.typeRoom}"></p>
+                    </div>
+                    <p class="mb-0" th:text="${room.numberPeople}"></p>
+                    <p class="mb-0" th:text="${room.price}+'\Đêm'"></p>
+                    <a th:href="@{/booking/{id}(id = ${room.id}) }">Đặt phòng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script th:src="@{/js/guest/home.js}"></script>
+</html>

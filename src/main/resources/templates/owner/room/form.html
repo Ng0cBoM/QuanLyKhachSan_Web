@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm mới | cập nhật phòng</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div>
+    <nav th:replace="~{/owner/navbar::nav}"></nav>
+</div>
+<div>
+    <h3>Cập nhập phòng</h3>
+    <form method="post" th:object="${room}" enctype="multipart/form-data">
+        <p th:text="${error}" style="color: red"></p>
+        <input hidden th:field="*{id}" />
+        <div class="form-group">
+            <label for="typeRoom">Loại phòng</label>
+            <select class="form-control form-control-lg" id="typeRoom" th:field="*{typeRoomId}">
+                <option
+                        th:each="typeRoom : ${typeRooms}"
+                        th:value="${typeRoom.id}"
+                        th:text="${typeRoom.name}"
+                />
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="people">Số lượng người</label>
+            <select class="form-control form-control-lg" id="people" th:field="*{people}">
+                <option
+                        th:each="numberPeople : ${numberPeoples}"
+                        th:value="${numberPeople.code}"
+                        th:text="${numberPeople.value}"
+                />
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="hotelId">Chi nhánh</label>
+            <select class="form-control form-control-lg" id="hotelId" th:field="*{hotelId}">
+                <option
+                        th:each="hotel: ${hotels}"
+                        th:value="${hotel.id}"
+                        th:text="${hotel.address}"
+                />
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Giá tiền</label>
+            <input th:field="*{price}" type="number" class="form-control" id="price" placeholder="Nhập giá tiền" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea th:field="*{description}" class="form-control" id="description" rows="3" th:text="${room.description}"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Hình ảnh</label>
+            <input class="form-control" type="file" id="formFile" name="imageRoom">
+            <input th:field="*{image}" hidden />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Lưu lại</button>
+    </form>
+</div>
+</body>
+</html>

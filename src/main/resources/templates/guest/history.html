@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lịch sử đặt phòng</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+</head>
+<body>
+<div>
+  <nav th:replace="~{/guest/navbar::nav}"></nav>
+</div>
+<div>
+  <h3>Lịch sử đặt phòng</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Chi nhánh</th>
+      <th scope="col">Loại phòng</th>
+      <th scope="col">Số người</th>
+      <th scope="col">Giá tiền</th>
+      <th scope="col">Từ ngày</th>
+      <th scope="col">Đến ngày</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking, status: ${histories}">
+      <td th:text="${status.index + 1}"></td>
+      <td th:text="${booking.addressHotel}"></td>
+      <td th:text="${booking.typeRoom}"></td>
+      <td th:text="${booking.numberPeople}"></td>
+      <td th:text="${booking.price}"></td>
+      <td th:text="${booking.fromDate}"></td>
+      <td th:text="${booking.toDate}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

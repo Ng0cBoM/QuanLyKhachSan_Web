@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phòng</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+</head>
+<body>
+<div>
+    <nav th:replace="~{/owner/navbar::nav}"></nav>
+</div>
+<div>
+    <h3>Danh sách phòng</h3>
+    <a class="btn btn-primary mb-4" th:href="@{/owner/room/create}">Thêm mới phòng</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Loại phòng</th>
+            <th scope="col">Số lượng người</th>
+            <th scope="col">Chi nhánh</th>
+            <th scope="col">Giá tiền</th>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col" colspan="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room, status: ${rooms}">
+            <td th:text="${status.index + 1}"></td>
+            <td th:text="${room.typeRoom}"></td>
+            <td th:text="${room.numberPeople}"></td>
+            <td th:text="${room.addressHotel}"></td>
+            <td th:text="${room.price}"></td>
+            <td>
+                <img style="width: 100px; height: 100px;" th:src="@{${room.image}}" />
+            </td>
+            <td>
+                <a th:href="@{/owner/room/{id}(id = ${room.id})}">Sửa</a>
+            </td>
+            <td>
+                <a th:href="@{/owner/room/delete/{id}(id = ${room.id})}">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đặt phòng</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div>
+    <nav th:replace="~{/guest/navbar::nav}"></nav>
+</div>
+<div class="p-4">
+    <h3>Đặt phòng</h3>
+    <div class="col-md-4 p-2" style="background: gainsboro;">
+        <div class="d-flex">
+            <span>Địa chỉ: </span>
+            <span class="ml-2" th:text="${room.addressHotel}"></span>
+        </div>
+        <div class="d-flex">
+            <span>Loại phòng: </span>
+            <span class="ml-2" th:text="${room.typeRoom}"></span>
+        </div>
+        <div class="d-flex">
+            <span>Số lượng người: </span>
+            <span class="ml-2" th:text="${room.numberPeople}"></span>
+        </div>
+        <div class="d-flex">
+            <span>Giá\Đêm: </span>
+            <span class="ml-2" th:text="${room.price}"></span>
+        </div>
+    </div>
+    <form method="post" th:object="${booking}">
+        <p th:text="${error}" style="color: red"></p>
+        <input hidden th:field="*{price}" id="price"/>
+        <input hidden th:field="*{username}" />
+        <input hidden th:field="*{roomId}" />
+        <div class="form-group">
+            <label for="fromDate">Từ ngày</label>
+            <input th:field="*{fromDate}" type="date" class="form-control" id="fromDate" required>
+        </div>
+        <div class="form-group">
+            <label for="toDate">Đến ngày</label>
+            <input th:field="*{toDate}" type="date" class="form-control" id="toDate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Đặt phòng</button>
+    </form>
+    <span>Tổng tiền: <span id="total"></span> </span>
+</div>
+</body>
+<script th:src="@{/js/guest/booking.js}"></script>
+</html>

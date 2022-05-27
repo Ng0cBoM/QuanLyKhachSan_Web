@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm mới | cập nhật chi nhánh</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+    <div>
+        <nav th:replace="~{/owner/navbar::nav}"></nav>
+    </div>
+    <div>
+        <h3>Cập nhập chi nhánh khách sạn</h3>
+        <form method="post" th:object="${hotel}">
+            <p th:text="${error}" style="color: red"></p>
+            <input hidden th:field="*{id}" />
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input th:field="*{address}" type="text" class="form-control" id="address" placeholder="Nhập địa chỉ chi nhanh khách sạn">
+            </div>
+            <div class="form-group">
+                <label for="quantityRoom">Số lượng phòng</label>
+                <input th:field="*{quantityRoom}" type="number" class="form-control" id="quantityRoom" placeholder="Nhập số lượng phòng">
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu lại</button>
+        </form>
+    </div>
+</body>
+</html>
