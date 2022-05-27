@@ -1,0 +1,8 @@
+web cho phép đăng nhập
+nếu đăng nhập dưới thân phận là admin thì sẽ có thể quản lý được: khách sạn, phòng, quản lý khách đặt (thêm, sửa, xóa)
+đăng nhập dưới dạng khách sẽ xem được các phòng, tìm phòng theo địa chỉa, phòng, số người ở, đặt phòng, xem lịch sử đặt phòng,...
+
+công việc
+Controller + teamplate: Ngọc + Đan
+database : Ngọc+ Đan
+do nhóm có 2 người nên bọn e làm chung
